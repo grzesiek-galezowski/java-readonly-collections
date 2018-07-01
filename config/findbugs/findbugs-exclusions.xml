@@ -1,0 +1,4 @@
+<Match>
+    <Package name="com.github.grzesiek_galezowski.test_environment"/>
+    <Bug code="UC_USELESS_VOID_METHOD"/>
+</Match>

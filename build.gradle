@@ -1,14 +1,159 @@
-group 'readonly-collections'
-version '1.0-SNAPSHOT'
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+}
+
+plugins {
+    id 'net.researchgate.release' version "2.7.0"
+    id 'com.github.ben-manes.versions' version "0.19.0"
+    id "de.obqo.gradle.degraph" version "0.1.4.0"
+}
 
 apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'signing'
+apply plugin: 'checkstyle'
+apply plugin: 'findbugs'
+apply plugin: 'pmd'
+apply plugin: "jacoco"
+
+def travis = "$System.env.TRAVIS"
+
+def password = "";
+if (travis == "null") {
+    println "Normal build detected"
+    password = new File('C:\\Users\\grzes\\Dysk Google\\GradlePassword.txt').text
+
+    gradle.taskGraph.whenReady { taskGraph ->
+        if (taskGraph.allTasks.any { it instanceof Sign }) {
+            allprojects {
+                ext."signing.password" = password
+                //home '58596C05' //workplace 'E52FB31B'
+                ext."signing.keyId" = '58596C05'
+                ext."signing.secretKeyRingFile" = 'C:/Users/grzes/AppData/Roaming/gnupg/secring.gpg'
+            }
+        }
+    }
+
+    signing {
+        sign configurations.archives
+    }
+
+} else {
+    println "TRAVIS CI build detected"
+}
+
+
+group 'com.github.grzesiek-galezowski'
+description = """readonly-collections"""
+version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 repositories {
     mavenCentral()
+    jcenter()
 }
 
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.7'
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from 'build/docs/javadoc'
+}
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
+
+test {
+    useTestNG()
+}
+
+checkstyle {
+    ignoreFailures = false
+}
+
+findbugs {
+    effort = "max"
+    reportLevel = "high"
+    ignoreFailures = false
+}
+
+
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile 'com.google.code.findbugs:annotations:3.0.1'
+    compile 'com.google.code.findbugs:jsr305:3.0.2'
+    compileOnly 'com.sharneng:jsr305defaults:2.0.3'
+    findbugs 'com.google.code.findbugs:findbugs:3.0.1'
+    findbugs configurations.findbugsPlugins.dependencies
+    testCompile "org.assertj:assertj-core:3.10.0"
+    testCompile "org.testng:testng:6.14.3"
+    testCompile "org.mockito:mockito-core:2.19.0"
+    testCompile "com.github.autofixture:autofixturegenerator:2.1.10"
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+release {
+    failOnCommitNeeded = false
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                //repository(url: "https://oss.sonatype.org/content/repositories/snapshots") {
+                authentication(userName: "grzesiek-galezowski", password: password)
+            }
+
+            pom.project {
+                name 'readonly-collections'
+                packaging 'jar'
+                description 'TDD Toolkit'
+                url 'https://github.com/grzesiek-galezowski/java-readonly-collections'
+
+                scm {
+                    url 'scm:git@github.com:grzesiek-galezowski/java-readonly-collections.git'
+                    connection 'scm:git@github.com:grzesiek-galezowski/java-readonly-collections.git'
+                    developerConnection 'scm:git@github.com:grzesiek-galezowski/java-readonly-collections.git'
+                }
+
+                licenses {
+                    license {
+                        name 'The MIT License (MIT)'
+                        url 'http://opensource.org/licenses/MIT'
+                        distribution 'repo'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'grzesiek-galezowski'
+                        name 'Grzegorz Gałęzowski'
+                    }
+                }
+            }
+        }
+    }
+}
+
+afterReleaseBuild.dependsOn uploadArchives
+tasks.withType(FindBugs) {
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
 }
