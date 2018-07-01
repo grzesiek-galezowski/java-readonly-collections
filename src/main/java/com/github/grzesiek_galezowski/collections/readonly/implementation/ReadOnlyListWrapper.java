@@ -10,7 +10,7 @@ import java.util.function.Consumer;
 
 public class ReadOnlyListWrapper<T>
     extends ReadOnlyCollectionWrapper<T>
-    implements ReadOnlyList<T>, Serializable {
+    implements ReadOnlyList<T>, Serializable, Cloneable {
     private final List<T> original;
 
     public ReadOnlyListWrapper(final List<T> list) {
@@ -19,17 +19,17 @@ public class ReadOnlyListWrapper<T>
     }
 
     @Override
-    public T get(int index) {
+    public T get(final int index) {
         return original.get(index);
     }
 
     @Override
-    public int indexOf(Object o) {
+    public int indexOf(final Object o) {
         return original.indexOf(o);
     }
 
     @Override
-    public int lastIndexOf(Object o) {
+    public int lastIndexOf(final Object o) {
         return original.lastIndexOf(o);
     }
 
@@ -39,22 +39,22 @@ public class ReadOnlyListWrapper<T>
     }
 
     @Override
-    public ReadOnlyListIterator<T> listIterator(int index) {
+    public ReadOnlyListIterator<T> listIterator(final int index) {
         return new ReadOnlyListIteratorWrapper<>(original.listIterator(index));
     }
 
     @Override
-    public List<T> subList(int fromIndex, int toIndex) {
+    public List<T> subList(final int fromIndex, final int toIndex) {
         return original.subList(fromIndex, toIndex);
     }
 
     @Override
-    public void forEach(Consumer<? super T> action) {
+    public void forEach(final Consumer<? super T> action) {
         original.forEach(action);
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) {
             return true;
         }

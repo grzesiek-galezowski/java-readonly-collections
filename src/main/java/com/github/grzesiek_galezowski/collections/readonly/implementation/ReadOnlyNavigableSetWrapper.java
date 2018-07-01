@@ -13,28 +13,28 @@ public class ReadOnlyNavigableSetWrapper<E>
 
     private final NavigableSet<E> original;
 
-    public ReadOnlyNavigableSetWrapper(NavigableSet<E> original) {
+    public ReadOnlyNavigableSetWrapper(final NavigableSet<E> original) {
         super(original);
         this.original = original;
     }
 
     @Override
-    public E lower(E var1) {
+    public E lower(final E var1) {
         return original.lower(var1);
     }
 
     @Override
-    public E floor(E var1) {
+    public E floor(final E var1) {
         return original.floor(var1);
     }
 
     @Override
-    public E ceiling(E var1) {
+    public E ceiling(final E var1) {
         return original.ceiling(var1);
     }
 
     @Override
-    public E higher(E var1) {
+    public E higher(final E var1) {
         return original.higher(var1);
     }
 
@@ -49,22 +49,22 @@ public class ReadOnlyNavigableSetWrapper<E>
     }
 
     @Override
-    public ReadOnlyNavigableSet<E> subSet(E var1, boolean var2, E var3, boolean var4) {
+    public ReadOnlyNavigableSet<E> subSet(final E var1, final boolean var2, final E var3, final boolean var4) {
         return new ReadOnlyNavigableSetWrapper<>(original.subSet(var1, var2, var3, var4));
     }
 
     @Override
-    public ReadOnlyNavigableSet<E> headSet(E var1, boolean var2) {
+    public ReadOnlyNavigableSet<E> headSet(final E var1, final boolean var2) {
         return new ReadOnlyNavigableSetWrapper<>(original.headSet(var1, var2));
     }
 
     @Override
-    public ReadOnlyNavigableSet<E> tailSet(E var1, boolean var2) {
+    public ReadOnlyNavigableSet<E> tailSet(final E var1, final boolean var2) {
         return new ReadOnlyNavigableSetWrapper<>(original.tailSet(var1, var2));
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) {
             return true;
         }

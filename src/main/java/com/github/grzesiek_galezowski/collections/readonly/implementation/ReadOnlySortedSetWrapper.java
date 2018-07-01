@@ -11,7 +11,7 @@ public class ReadOnlySortedSetWrapper<T> extends ReadOnlySetWrapper<T>
 
     private final SortedSet<T> original;
 
-    public ReadOnlySortedSetWrapper(SortedSet<T> original) {
+    public ReadOnlySortedSetWrapper(final SortedSet<T> original) {
         super(original);
         this.original = original;
     }
@@ -22,7 +22,7 @@ public class ReadOnlySortedSetWrapper<T> extends ReadOnlySetWrapper<T>
     }
 
     @Override
-    public ReadOnlySortedSet<T> subSet(T var1, T var2) {
+    public ReadOnlySortedSet<T> subSet(final T var1, final T var2) {
         return new ReadOnlySortedSetWrapper<>(original.subSet(var1, var2));
     }
 
@@ -32,7 +32,7 @@ public class ReadOnlySortedSetWrapper<T> extends ReadOnlySetWrapper<T>
     }
 
     @Override
-    public ReadOnlySortedSet<T> tailSet(T var1) {
+    public ReadOnlySortedSet<T> tailSet(final T var1) {
         return new ReadOnlySortedSetWrapper<>(original.tailSet(var1));
     }
 
@@ -47,7 +47,7 @@ public class ReadOnlySortedSetWrapper<T> extends ReadOnlySetWrapper<T>
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) {
             return true;
         }

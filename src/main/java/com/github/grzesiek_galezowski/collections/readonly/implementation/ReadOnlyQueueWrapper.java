@@ -11,7 +11,7 @@ public class ReadOnlyQueueWrapper<T>
 
     private final Queue<T> original;
 
-    public ReadOnlyQueueWrapper(Queue<T> original) {
+    public ReadOnlyQueueWrapper(final Queue<T> original) {
         super(original);
         this.original = original;
     }
@@ -27,7 +27,7 @@ public class ReadOnlyQueueWrapper<T>
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) {
             return true;
         }

@@ -8,11 +8,11 @@ import java.io.Serializable;
 import java.util.Map;
 import java.util.function.BiConsumer;
 
-public class ReadOnlyMapWrapper<K,V> implements ReadOnlyMap<K, V>, Serializable {
+public class ReadOnlyMapWrapper<K,V> implements ReadOnlyMap<K, V>, Serializable, Cloneable {
 
     private final Map<K,V> original;
 
-    public ReadOnlyMapWrapper(Map<K, V> original) {
+    public ReadOnlyMapWrapper(final Map<K, V> original) {
         this.original = original;
     }
 
@@ -27,17 +27,17 @@ public class ReadOnlyMapWrapper<K,V> implements ReadOnlyMap<K, V>, Serializable 
     }
 
     @Override
-    public boolean containsKey(Object key) {
+    public boolean containsKey(final Object key) {
         return original.containsKey(key);
     }
 
     @Override
-    public boolean containsValue(Object value) {
+    public boolean containsValue(final Object value) {
         return original.containsValue(value);
     }
 
     @Override
-    public V get(Object key) {
+    public V get(final Object key) {
         return original.get(key);
     }
 
@@ -57,17 +57,17 @@ public class ReadOnlyMapWrapper<K,V> implements ReadOnlyMap<K, V>, Serializable 
     }
 
     @Override
-    public V getOrDefault(Object key, V defaultValue) {
+    public V getOrDefault(final Object key, final V defaultValue) {
         return original.getOrDefault(key, defaultValue);
     }
 
     @Override
-    public void forEach(BiConsumer<? super K, ? super V> action) {
+    public void forEach(final BiConsumer<? super K, ? super V> action) {
         original.forEach(action);
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) {
             return true;
         }

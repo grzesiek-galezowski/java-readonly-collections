@@ -10,7 +10,7 @@ import java.util.Spliterator;
 import java.util.function.IntFunction;
 import java.util.stream.Stream;
 
-public class ReadOnlyCollectionWrapper<T> implements ReadOnlyCollection<T>, Serializable {
+public class ReadOnlyCollectionWrapper<T> implements ReadOnlyCollection<T>, Serializable, Cloneable {
     private final Collection<T> original;
 
     public ReadOnlyCollectionWrapper(final Collection<T> original) {
@@ -28,7 +28,7 @@ public class ReadOnlyCollectionWrapper<T> implements ReadOnlyCollection<T>, Seri
     }
 
     @Override
-    public boolean contains(Object o) {
+    public boolean contains(final Object o) {
         return original.contains(o);
     }
 
@@ -43,7 +43,7 @@ public class ReadOnlyCollectionWrapper<T> implements ReadOnlyCollection<T>, Seri
     }
 
     @Override
-    public <T1> T1[] toArray(T1[] a) {
+    public <T1> T1[] toArray(final T1[] a) {
         return original.toArray(a);
     }
 

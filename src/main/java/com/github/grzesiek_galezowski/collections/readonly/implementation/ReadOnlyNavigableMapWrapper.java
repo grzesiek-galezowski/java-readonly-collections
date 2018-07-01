@@ -9,53 +9,53 @@ import java.util.NavigableMap;
 
 public class ReadOnlyNavigableMapWrapper<K, V>
     extends ReadOnlySortedMapWrapper<K, V>
-    implements ReadOnlyNavigableMap<K, V>, Serializable {
+    implements ReadOnlyNavigableMap<K, V>, Serializable, Cloneable {
 
     private NavigableMap<K, V> original;
 
-    public ReadOnlyNavigableMapWrapper(NavigableMap<K, V> original) {
+    public ReadOnlyNavigableMapWrapper(final NavigableMap<K, V> original) {
         super(original);
         this.original = original;
     }
 
     @Override
-    public Map.Entry<K, V> lowerEntry(K key) {
+    public Map.Entry<K, V> lowerEntry(final K key) {
         return original.lowerEntry(key);
     }
 
     @Override
-    public K lowerKey(K key) {
+    public K lowerKey(final K key) {
         return original.lowerKey(key);
     }
 
     @Override
-    public Map.Entry<K, V> floorEntry(K key) {
+    public Map.Entry<K, V> floorEntry(final K key) {
         return original.floorEntry(key);
     }
 
     @Override
-    public K floorKey(K key) {
+    public K floorKey(final K key) {
         return original.floorKey(key);
     }
 
     @Override
-    public Map.Entry<K, V> ceilingEntry(K key) {
+    public Map.Entry<K, V> ceilingEntry(final K key) {
 
         return original.ceilingEntry(key);
     }
 
     @Override
-    public K ceilingKey(K key) {
+    public K ceilingKey(final K key) {
         return original.ceilingKey(key);
     }
 
     @Override
-    public Map.Entry<K, V> higherEntry(K key) {
+    public Map.Entry<K, V> higherEntry(final K key) {
         return original.higherEntry(key);
     }
 
     @Override
-    public K higherKey(K key) {
+    public K higherKey(final K key) {
         return original.higherKey(key);
     }
 
@@ -85,22 +85,22 @@ public class ReadOnlyNavigableMapWrapper<K, V>
     }
 
     @Override
-    public ReadOnlyNavigableMap<K, V> subMap(K fromKey, boolean fromInclusive, K toKey, boolean toInclusive) {
+    public ReadOnlyNavigableMap<K, V> subMap(final K fromKey, final boolean fromInclusive, final K toKey, final boolean toInclusive) {
         return new ReadOnlyNavigableMapWrapper<>(original.subMap(fromKey, fromInclusive, toKey, toInclusive));
     }
 
     @Override
-    public ReadOnlyNavigableMap<K, V> headMap(K toKey, boolean inclusive) {
+    public ReadOnlyNavigableMap<K, V> headMap(final K toKey, final boolean inclusive) {
         return new ReadOnlyNavigableMapWrapper<>(original.headMap(toKey, inclusive));
     }
 
     @Override
-    public ReadOnlyNavigableMap<K, V> tailMap(K fromKey, boolean inclusive) {
+    public ReadOnlyNavigableMap<K, V> tailMap(final K fromKey, final boolean inclusive) {
         return new ReadOnlyNavigableMapWrapper<>(original.tailMap(fromKey, inclusive));
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) {
             return true;
         }

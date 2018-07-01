@@ -12,7 +12,7 @@ public class ReadOnlySortedMapWrapper<K, V>
 
     private SortedMap<K, V> original;
 
-    public ReadOnlySortedMapWrapper(SortedMap<K, V> original) {
+    public ReadOnlySortedMapWrapper(final SortedMap<K, V> original) {
         super(original);
         this.original = original;
     }
@@ -23,17 +23,17 @@ public class ReadOnlySortedMapWrapper<K, V>
     }
 
     @Override
-    public ReadOnlySortedMap<K, V> subMap(K fromKey, K toKey) {
+    public ReadOnlySortedMap<K, V> subMap(final K fromKey, final K toKey) {
         return new ReadOnlySortedMapWrapper<>(original.subMap(fromKey, toKey));
     }
 
     @Override
-    public ReadOnlySortedMap<K, V> headMap(K toKey) {
+    public ReadOnlySortedMap<K, V> headMap(final K toKey) {
         return new ReadOnlySortedMapWrapper<>(original.headMap(toKey));
     }
 
     @Override
-    public ReadOnlySortedMap<K, V> tailMap(K fromKey) {
+    public ReadOnlySortedMap<K, V> tailMap(final K fromKey) {
         return new ReadOnlySortedMapWrapper<>(original.tailMap(fromKey));
     }
 
@@ -48,7 +48,7 @@ public class ReadOnlySortedMapWrapper<K, V>
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) {
             return true;
         }

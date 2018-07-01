@@ -9,7 +9,7 @@ import java.util.Deque;
 
 public class ReadOnlyDequeWrapper<T>
     extends ReadOnlyQueueWrapper<T>
-    implements ReadOnlyDeque<T>, Serializable {
+    implements ReadOnlyDeque<T>, Serializable, Cloneable {
 
     private final Deque<T> original;
 
@@ -44,7 +44,7 @@ public class ReadOnlyDequeWrapper<T>
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) {
             return true;
         }
