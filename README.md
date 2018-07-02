@@ -14,7 +14,12 @@
 ## Usage example
 
 ```java
+import com.github.grzesiek_galezowski.collections.readonly.factory.ReadOnlyCollections;
+
+//...
+
 List<Integer> list = ...;
-someone.doSomething(readonly(list));
+ReadOnlyList<Integer> readOnlyVersion = readOnly(list);
+someone.doSomething(readOnlyVersion);
 ```
 
