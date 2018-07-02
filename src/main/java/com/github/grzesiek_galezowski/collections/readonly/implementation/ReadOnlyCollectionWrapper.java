@@ -10,12 +10,14 @@ import java.util.Spliterator;
 import java.util.function.IntFunction;
 import java.util.stream.Stream;
 
-public class ReadOnlyCollectionWrapper<T> implements ReadOnlyCollection<T>, Serializable, Cloneable {
+public class ReadOnlyCollectionWrapper<T> implements ReadOnlyCollection<T>, Serializable {
     private final Collection<T> original;
 
     public ReadOnlyCollectionWrapper(final Collection<T> original) {
         this.original = original;
     }
+
+
 
     @Override
     public int size() {
@@ -72,6 +74,7 @@ public class ReadOnlyCollectionWrapper<T> implements ReadOnlyCollection<T>, Seri
         return original.parallelStream();
     }
 
+    @SuppressWarnings("checkstyle:all")
     @Override
     public boolean equals(final Object o) {
         if (this == o) {
@@ -86,6 +89,7 @@ public class ReadOnlyCollectionWrapper<T> implements ReadOnlyCollection<T>, Seri
         return original != null ? original.equals(that.original) : that.original == null;
     }
 
+    @SuppressWarnings("checkstyle:all")
     @Override
     public int hashCode() {
         return original != null ? original.hashCode() : 0;

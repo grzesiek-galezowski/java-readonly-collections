@@ -23,7 +23,7 @@ public class ReadOnlyCollectionIteratorWrapper<T> implements ReadOnlyCollectionI
     }
 
     @Override
-    public void forEachRemaining(Consumer<? super T> action) {
+    public void forEachRemaining(final Consumer<? super T> action) {
         iterator.forEachRemaining(action);
     }
 }

@@ -10,7 +10,7 @@ import java.util.function.Consumer;
 
 public class ReadOnlyListWrapper<T>
     extends ReadOnlyCollectionWrapper<T>
-    implements ReadOnlyList<T>, Serializable, Cloneable {
+    implements ReadOnlyList<T>, Serializable {
     private final List<T> original;
 
     public ReadOnlyListWrapper(final List<T> list) {
@@ -54,6 +54,7 @@ public class ReadOnlyListWrapper<T>
     }
 
     @Override
+    @SuppressWarnings("checkstyle:all")
     public boolean equals(final Object o) {
         if (this == o) {
             return true;
@@ -71,6 +72,7 @@ public class ReadOnlyListWrapper<T>
     }
 
     @Override
+    @SuppressWarnings("checkstyle:all")
     public int hashCode() {
         int result = super.hashCode();
         result = 31 * result + (original != null ? original.hashCode() : 0);

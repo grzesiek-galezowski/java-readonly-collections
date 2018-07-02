@@ -100,6 +100,7 @@ public class ReadOnlyNavigableMapWrapper<K, V>
     }
 
     @Override
+    @SuppressWarnings("checkstyle:all")
     public boolean equals(final Object o) {
         if (this == o) {
             return true;
@@ -117,6 +118,7 @@ public class ReadOnlyNavigableMapWrapper<K, V>
     }
 
     @Override
+    @SuppressWarnings("checkstyle:all")
     public int hashCode() {
         int result = super.hashCode();
         result = 31 * result + (original != null ? original.hashCode() : 0);

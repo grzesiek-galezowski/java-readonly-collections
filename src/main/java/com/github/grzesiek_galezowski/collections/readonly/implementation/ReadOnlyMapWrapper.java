@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.Map;
 import java.util.function.BiConsumer;
 
-public class ReadOnlyMapWrapper<K,V> implements ReadOnlyMap<K, V>, Serializable, Cloneable {
+public class ReadOnlyMapWrapper<K,V> implements ReadOnlyMap<K, V>, Serializable {
 
     private final Map<K,V> original;
 
@@ -67,6 +67,7 @@ public class ReadOnlyMapWrapper<K,V> implements ReadOnlyMap<K, V>, Serializable,
     }
 
     @Override
+    @SuppressWarnings("checkstyle:all")
     public boolean equals(final Object o) {
         if (this == o) {
             return true;
@@ -81,6 +82,7 @@ public class ReadOnlyMapWrapper<K,V> implements ReadOnlyMap<K, V>, Serializable,
     }
 
     @Override
+    @SuppressWarnings("checkstyle:all")
     public int hashCode() {
         return original != null ? original.hashCode() : 0;
     }

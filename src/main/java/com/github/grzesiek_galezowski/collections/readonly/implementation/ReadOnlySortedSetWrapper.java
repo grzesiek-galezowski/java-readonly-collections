@@ -27,7 +27,7 @@ public class ReadOnlySortedSetWrapper<T> extends ReadOnlySetWrapper<T>
     }
 
     @Override
-    public ReadOnlySortedSet<T> headSet(T var1) {
+    public ReadOnlySortedSet<T> headSet(final T var1) {
         return new ReadOnlySortedSetWrapper<>(original.headSet(var1));
     }
 
@@ -47,6 +47,7 @@ public class ReadOnlySortedSetWrapper<T> extends ReadOnlySetWrapper<T>
     }
 
     @Override
+    @SuppressWarnings("checkstyle:all")
     public boolean equals(final Object o) {
         if (this == o) {
             return true;
@@ -64,6 +65,7 @@ public class ReadOnlySortedSetWrapper<T> extends ReadOnlySetWrapper<T>
     }
 
     @Override
+    @SuppressWarnings("checkstyle:all")
     public int hashCode() {
         int result = super.hashCode();
         result = 31 * result + (original != null ? original.hashCode() : 0);

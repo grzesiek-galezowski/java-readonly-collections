@@ -9,7 +9,7 @@ import java.util.Deque;
 
 public class ReadOnlyDequeWrapper<T>
     extends ReadOnlyQueueWrapper<T>
-    implements ReadOnlyDeque<T>, Serializable, Cloneable {
+    implements ReadOnlyDeque<T>, Serializable {
 
     private final Deque<T> original;
 
@@ -44,6 +44,7 @@ public class ReadOnlyDequeWrapper<T>
     }
 
     @Override
+    @SuppressWarnings("checkstyle:all")
     public boolean equals(final Object o) {
         if (this == o) {
             return true;
@@ -61,6 +62,7 @@ public class ReadOnlyDequeWrapper<T>
     }
 
     @Override
+    @SuppressWarnings("checkstyle:all")
     public int hashCode() {
         int result = super.hashCode();
         result = 31 * result + (original != null ? original.hashCode() : 0);
