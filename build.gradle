@@ -123,7 +123,7 @@ uploadArchives {
             pom.project {
                 name 'readonly-collections'
                 packaging 'jar'
-                description 'TDD Toolkit'
+                description 'Read-only collection wrappers for Java built-in collections'
                 url 'https://github.com/grzesiek-galezowski/java-readonly-collections'
 
                 scm {
