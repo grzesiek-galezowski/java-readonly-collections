@@ -4,7 +4,7 @@
 
 ## Read-only vs unmodifiable
 
-* Unmodifiable collections contain modifying operations, but throw exceptions when they are invoked. Read-only collections do not contain modifying operations.
+* Unmodifiable collections contain modifying operations, but throw exceptions when they are invoked. Read-only collections do not contain modifying operations. In other words, unmodifiable exceptions prohibit change during runtime, while read-only collections prohibit change during compile time (but only to those that hold a read-only wrapper - holders of the original will be able to modify at will).
 
 ## Read-only vs immutable (e.g. Vavr)
 
